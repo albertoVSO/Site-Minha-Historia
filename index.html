@@ -40,7 +40,57 @@ body {
 .bouquet {
     position: relative;
     bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 40px;
 }
+
+.caule {
+    position: absolute;
+    bottom: 0;
+    width: 6px;
+    height: 0;
+    background: linear-gradient(to top, #14532d, #22c55e);
+    border-radius: 10px;
+    animation: crescerCaule 2s ease-out forwards;
+}
+
+.flor {
+    position: absolute;
+    bottom: 200px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-50%) scale(0);
+    animation: aparecerFlor 1.5s ease-out forwards;
+    animation-delay: 2s;
+}
+
+.flor:nth-of-type(1) { left: calc(50% - 60px); }
+.flor:nth-of-type(2) { left: 50%; }
+.flor:nth-of-type(3) { left: calc(50% + 60px); }
+
+.petala {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle at top, #ffc0cb, #ff4b5c);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+    opacity: 0;
+    animation: abrirPetala 1s ease forwards;
+}
+
+.petala:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translateY(-45px); }
+.petala:nth-child(2) { transform: translate(-50%, -50%) rotate(72deg) translateY(-45px); }
+.petala:nth-child(3) { transform: translate(-50%, -50%) rotate(144deg) translateY(-45px); }
+.petala:nth-child(4) { transform: translate(-50%, -50%) rotate(216deg) translateY(-45px); }
+.petala:nth-child(5) { transform: translate(-50%, -50%) rotate(288deg) translateY(-45px); }
 
 .particula {
     position: absolute;
