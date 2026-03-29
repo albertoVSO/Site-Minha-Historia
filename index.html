@@ -20,54 +20,148 @@ body {
     position: fixed;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(to top, #1e1e2f, #3a3a5f);
+    background: linear-gradient(to top, #0f2027, #203a43, #2c5364);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.mensagem {
+    position: absolute;
+    top: 20%;
+    font-size: 28px;
+    color: #fff;
+    opacity: 0;
+    animation: aparecerTexto 2s ease forwards;
+}
+
+.bouquet {
+    position: relative;
+    bottom: 0;
+}
+
+.particula {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: subirParticula 4s linear infinite;
+}
+
+@keyframes aparecerTexto {
+    to { opacity: 1; }
+}
+
+@keyframes subirParticula {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* ===== CAULE ===== */
+.caule {
+    position: absolute;
+    bottom: 0;
+    width: 6px;
+    height: 0;
+    background: linear-gradient(to top, #14532d, #22c55e);
+    border-radius: 10px;
+    animation: crescerCaule 2s ease-out forwards;
+}
+
+/* ===== FOLHAS ===== */
+.folha {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    background: #22c55e;
+    border-radius: 20px 20px 0 20px;
+    opacity: 0;
+}
+
+.folha.esq {
+    left: -35px;
+    transform: rotate(-30deg);
+    animation: folhaAparecer 1s ease forwards;
+    animation-delay: 1.5s;
+}
+
+.folha.dir {
+    right: -35px;
+    transform: rotate(30deg);
+    animation: folhaAparecer 1s ease forwards;
+    animation-delay: 1.7s;
+}
+
+/* ===== FLOR ===== */
+.flor {
+    position: absolute;
+    bottom: 180px;
+    width: 150px;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
-}
-
-.flor {
-    position: relative;
-    width: 150px;
-    height: 150px;
     transform: scale(0);
-    animation: aparecer 2s ease-out forwards;
+    animation: aparecerFlor 1.5s ease-out forwards;
+    animation-delay: 2s;
 }
 
 .petala {
     position: absolute;
     width: 70px;
     height: 70px;
-    background: pink;
+    background: radial-gradient(circle at top, #ffc0cb, #ff4b5c);
     border-radius: 50%;
-    transform-origin: bottom center;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
     opacity: 0;
-    animation: abrir 1.5s ease forwards;
+    animation: abrirPetala 1s ease forwards;
 }
 
-.petala:nth-child(1) { transform: rotate(0deg) translateY(-40px); animation-delay: 0.5s; }
-.petala:nth-child(2) { transform: rotate(72deg) translateY(-40px); animation-delay: 0.7s; }
-.petala:nth-child(3) { transform: rotate(144deg) translateY(-40px); animation-delay: 0.9s; }
-.petala:nth-child(4) { transform: rotate(216deg) translateY(-40px); animation-delay: 1.1s; }
-.petala:nth-child(5) { transform: rotate(288deg) translateY(-40px); animation-delay: 1.3s; }
+.petala:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translateY(-45px); animation-delay: 2.2s; }
+.petala:nth-child(2) { transform: translate(-50%, -50%) rotate(72deg) translateY(-45px); animation-delay: 2.3s; }
+.petala:nth-child(3) { transform: translate(-50%, -50%) rotate(144deg) translateY(-45px); animation-delay: 2.4s; }
+.petala:nth-child(4) { transform: translate(-50%, -50%) rotate(216deg) translateY(-45px); animation-delay: 2.5s; }
+.petala:nth-child(5) { transform: translate(-50%, -50%) rotate(288deg) translateY(-45px); animation-delay: 2.6s; }
 
 .centro {
     position: absolute;
     width: 40px;
     height: 40px;
-    background: yellow;
+    background: radial-gradient(circle, #fde047, #facc15);
     border-radius: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    animation: centro 1s ease forwards;
-    animation-delay: 1.5s;
+    animation: centro 0.8s ease forwards;
+    animation-delay: 2.7s;
 }
 
-@keyframes aparecer { to { transform: scale(1); } }
-@keyframes abrir { to { opacity: 1; } }
-@keyframes centro { to { transform: translate(-50%, -50%) scale(1); } }
+/* ===== ANIMAÇÕES ===== */
+@keyframes crescerCaule {
+    to { height: 200px; }
+}
+
+@keyframes folhaAparecer {
+    to { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes aparecerFlor {
+    to { transform: scale(1); }
+}
+
+@keyframes abrirPetala {
+    to { opacity: 1; }
+}
+
+@keyframes centro {
+    to { transform: translate(-50%, -50%) scale(1); }
+}
 
 /* ===== CONTEÚDO PRINCIPAL ===== */
 #conteudo {
@@ -147,8 +241,53 @@ footer {
 
 <!-- FLOR INICIAL -->
 <div id="intro">
+  <div class="mensagem">isso é pra você...</div>
+
+  <div class="bouquet">
+    <div class="caule" style="left:-40px"></div>
+    <div class="caule" style="left:0px"></div>
+    <div class="caule" style="left:40px"></div>
+
+    <div class="flor" style="left:-40px">
+      <div class="petala"></div>
+      <div class="petala"></div>
+      <div class="petala"></div>
+      <div class="petala"></div>
+      <div class="petala"></div>
+      <div class="centro"></div>
+    </div>
+
+    <div class="flor" style="left:0px">
+      <div class="petala"></div>
+      <div class="petala"></div>
+      <div class="petala"></div>
+      <div class="petala"></div>
+      <div class="petala"></div>
+      <div class="centro"></div>
+    </div>
+
+    <div class="flor" style="left:40px">
+      <div class="petala"></div>
+      <div class="petala"></div>
+      <div class="petala"></div>
+      <div class="petala"></div>
+      <div class="petala"></div>
+      <div class="centro"></div>
+    </div>
+  </div>
+</div>
+  <div class="folha esq"></div>
+  <div class="folha dir"></div>
+
   <div class="flor">
     <div class="petala"></div>
+    <div class="petala"></div>
+    <div class="petala"></div>
+    <div class="petala"></div>
+    <div class="petala"></div>
+    <div class="centro"></div>
+  </div>
+</div>
     <div class="petala"></div>
     <div class="petala"></div>
     <div class="petala"></div>
@@ -254,6 +393,19 @@ function criarCoracao() {
 }
 
 setInterval(criarCoracao, 450);
+
+/* PARTICULAS */
+function criarParticula() {
+    const p = document.createElement("div");
+    p.classList.add("particula");
+    p.style.left = Math.random() * 100 + "vw";
+    p.style.bottom = "0";
+    p.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 4000);
+}
+
+setInterval(criarParticula, 200);
 </script>
 
 </body>
