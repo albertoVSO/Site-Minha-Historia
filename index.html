@@ -1,279 +1,175 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Nossa História ❤️</title>
+    <meta charset="UTF-8">
+    <title>Nossa História ❤️</title>
 
-<link rel="stylesheet" href="style.css">
-<script src="main.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #ff4b5c, #ff9a9e);
+            color: #5a0f14;
+            overflow-x: hidden;
+        }
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #ff4b5c, #ff9a9e);
-    color: #5a0f14;
-    overflow-x: hidden;
-}
+        audio {
+            display: block;
+            margin: 20px auto;
+        }
 
-audio {
-    display: block;
-    margin: 20px auto;
-}
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px 30px;
+            background: rgba(255,245,247,0.97);
+            border-radius: 22px;
+            box-shadow: 0 18px 45px rgba(192,57,43,0.35);
+            position: relative;
+            z-index: 1;
+        }
 
-.container {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 40px 30px;
-    background: rgba(255,245,247,0.97);
-    border-radius: 22px;
-    box-shadow: 0 18px 45px rgba(192,57,43,0.35);
-    position: relative;
-    z-index: 2;
-    display: none;
-    opacity: 0;
-    transition: opacity 2s;
-}
+        h1 {
+            text-align: center;
+            color: #c0392b;
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
 
-h1 {
-    text-align: center;
-    color: #c0392b;
-    font-size: 40px;
-    margin-bottom: 30px;
-}
+        p {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
 
-p {
-    font-size: 18px;
-    line-height: 1.9;
-    margin-bottom: 25px;
-    text-align: justify;
-}
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+            margin: 40px 0;
+        }
 
-.galeria {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 22px;
-    margin: 40px 0;
-}
+        .galeria img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 22px rgba(192,57,43,0.35);
+        }
 
-.galeria img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    border-radius: 20px;
-    box-shadow: 0 10px 22px rgba(192,57,43,0.35);
-}
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 14px;
+            color: #8e1b1b;
+        }
 
-footer {
-    margin-top: 50px;
-    text-align: center;
-    font-size: 14px;
-    color: #8e1b1b;
-}
+        /* ❤️ Corações */
+        .coracao {
+            position: fixed;
+            bottom: -20px;
+            color: rgba(255, 64, 86, 0.85);
+            animation: subir 6s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-.coracao {
-    position: fixed;
-    bottom: -20px;
-    color: rgba(255, 64, 86, 0.85);
-    animation: subir 6s linear infinite;
-    pointer-events: none;
-    z-index: 1;
-}
-
-@keyframes subir {
-    0% {
-        transform: translateY(0) scale(0.8);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-120vh) scale(1.4);
-        opacity: 0;
-    }
-}
-
-.flowers, .night {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-</style>
+        @keyframes subir {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh) scale(1.4);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
-
-<body class="not-loaded">
+<body>
 
 <audio controls autoplay loop>
     <source src="musica.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio.
 </audio>
 
-<div class="night"></div>
-
-<!-- 🌸 FLORES COMPLETAS (SEM REMOVER NADA) -->
-<div class="flowers">
-
-<div class="flower flower--1">
-<div class="flower__leafs flower__leafs--1">
-<div class="flower__leaf flower__leaf--1"></div>
-<div class="flower__leaf flower__leaf--2"></div>
-<div class="flower__leaf flower__leaf--3"></div>
-<div class="flower__leaf flower__leaf--4"></div>
-<div class="flower__white-circle"></div>
-<div class="flower__light flower__light--1"></div>
-<div class="flower__light flower__light--2"></div>
-<div class="flower__light flower__light--3"></div>
-<div class="flower__light flower__light--4"></div>
-<div class="flower__light flower__light--5"></div>
-<div class="flower__light flower__light--6"></div>
-<div class="flower__light flower__light--7"></div>
-<div class="flower__light flower__light--8"></div>
-</div>
-<div class="flower__line">
-<div class="flower__line__leaf flower__line__leaf--1"></div>
-<div class="flower__line__leaf flower__line__leaf--2"></div>
-<div class="flower__line__leaf flower__line__leaf--3"></div>
-<div class="flower__line__leaf flower__line__leaf--4"></div>
-<div class="flower__line__leaf flower__line__leaf--5"></div>
-<div class="flower__line__leaf flower__line__leaf--6"></div>
-</div>
-</div>
-
-<div class="flower flower--2">
-<div class="flower__leafs flower__leafs--2">
-<div class="flower__leaf flower__leaf--1"></div>
-<div class="flower__leaf flower__leaf--2"></div>
-<div class="flower__leaf flower__leaf--3"></div>
-<div class="flower__leaf flower__leaf--4"></div>
-<div class="flower__white-circle"></div>
-<div class="flower__light flower__light--1"></div>
-<div class="flower__light flower__light--2"></div>
-<div class="flower__light flower__light--3"></div>
-<div class="flower__light flower__light--4"></div>
-<div class="flower__light flower__light--5"></div>
-<div class="flower__light flower__light--6"></div>
-<div class="flower__light flower__light--7"></div>
-<div class="flower__light flower__light--8"></div>
-</div>
-<div class="flower__line">
-<div class="flower__line__leaf flower__line__leaf--1"></div>
-<div class="flower__line__leaf flower__line__leaf--2"></div>
-<div class="flower__line__leaf flower__line__leaf--3"></div>
-<div class="flower__line__leaf flower__line__leaf--4"></div>
-</div>
-</div>
-
-<div class="flower flower--3">
-<div class="flower__leafs flower__leafs--3">
-<div class="flower__leaf flower__leaf--1"></div>
-<div class="flower__leaf flower__leaf--2"></div>
-<div class="flower__leaf flower__leaf--3"></div>
-<div class="flower__leaf flower__leaf--4"></div>
-<div class="flower__white-circle"></div>
-<div class="flower__light flower__light--1"></div>
-<div class="flower__light flower__light--2"></div>
-<div class="flower__light flower__light--3"></div>
-<div class="flower__light flower__light--4"></div>
-<div class="flower__light flower__light--5"></div>
-<div class="flower__light flower__light--6"></div>
-<div class="flower__light flower__light--7"></div>
-<div class="flower__light flower__light--8"></div>
-</div>
-<div class="flower__line">
-<div class="flower__line__leaf flower__line__leaf--1"></div>
-<div class="flower__line__leaf flower__line__leaf--2"></div>
-<div class="flower__line__leaf flower__line__leaf--3"></div>
-<div class="flower__line__leaf flower__line__leaf--4"></div>
-</div>
-</div>
-
-<!-- (continua exatamente como você mandou, sem remover nada...) -->
-
-</div>
-
-<!-- ❤️ HISTÓRIA COMPLETA (SEM ALTERAR NADA) -->
 <div class="container">
+    <h1>Nossa História</h1>
 
-<h1>Nossa História</h1>
+    <p>eu conheci ela num churrasco com amigos eu estava bêbado e só conseguia reparar nela e naqueles olhos completamente apaixonantes... depois de uma semana fui em uma festa onde ela estava lá e desde então não consegui tirar os olhos dela.</p>
 
-<p>eu conheci ela num churrasco com amigos eu estava bêbado e só conseguia reparar nela e naqueles olhos completamente apaixonantes... depois de uma semana fui em uma festa onde ela estava lá e desde então não consegui tirar os olhos dela.</p>
+    <div class="galeria">
+        <img src="foto1.jpeg">
+        <img src="foto2.jpeg">
+    </div>
 
-<div class="galeria">
-<img src="foto1.jpeg">
-<img src="foto2.jpeg">
-</div>
+    <p>começamos a conversar praticamente no aniversário dela 21/07/2025, a partir desse data conversamos todos os dias de manhã bem cedo até as madrugadas, tivemos as brigas de qual musica era melhor nas notas e obviamente eu ganhei todas.</p>
 
-<p>começamos a conversar praticamente no aniversário dela 21/07/2025, a partir desse data conversamos todos os dias de manhã bem cedo até as madrugadas, tivemos as brigas de qual musica era melhor nas notas e obviamente eu ganhei todas.</p>
+    <p>ainda me lembro do nosso primeiro selinho sentados no sofa no intervalo do jogo do cruzeiro (desde o começo o cruzeiro te incomoda) e do beijo de verdade no carro quando te deixei em casa, e posso afirmar com todas as palavras foi o dia mais feliz da minha vida.</p>
 
-<p>ainda me lembro do nosso primeiro selinho sentados no sofa no intervalo do jogo do cruzeiro (desde o começo o cruzeiro te incomoda) e do beijo de verdade no carro quando te deixei em casa, e posso afirmar com todas as palavras foi o dia mais feliz da minha vida.</p>
+    <div class="galeria">
+        <img src="foto1.jpeg">
+        <img src="foto2.jpeg">
+    </div>
 
-<div class="galeria">
-<img src="foto1.jpeg">
-<img src="foto2.jpeg">
-</div>
+    <p>Depois disso ficamos uns dias sem nos ver até que o zaltron me pediu ajuda pra ele ir ver a ana luiza e eu aproveitei pra te ver, e daí fui na tua casa a primeira vez e assistimos YOU (série que nunca tinha visto antes).</p>
 
-<p>Depois disso ficamos uns dias sem nos ver até que o zaltron me pediu ajuda pra ele ir ver a ana luiza e eu aproveitei pra te ver, e daí fui na tua casa a primeira vez e assistimos YOU (série que nunca tinha visto antes).</p>
+    <div class="galeria">
+        <img src="foto4.jpeg">
+        <img src="foto3.jpeg">
+    </div>
 
-<div class="galeria">
-<img src="foto4.jpeg">
-<img src="foto3.jpeg">
-</div>
+    <p>Depois desse dia nos afastamos um pouco, acabamos ficando com outras pessoas mas tu nunca saiu da minha cabeça... até chegar setembro/outubro quando começamos a sair pra jogar sinuca com o paulo e o dinho,</p>
 
-<p>Depois desse dia nos afastamos um pouco, acabamos ficando com outras pessoas mas tu nunca saiu da minha cabeça... até chegar setembro/outubro quando começamos a sair pra jogar sinuca com o paulo e o dinho,</p>
+    <p>até hoje me ardo de raiva quando lembro daqueles urubus em cima de ti tentando ficar contigo (principalmente do guilherme, gabriel e braian esses tão numa lista negra),</p>
 
-<p>até hoje me ardo de raiva quando lembro daqueles urubus em cima de ti tentando ficar contigo (principalmente do guilherme, gabriel e braian esses tão numa lista negra),</p>
+    <p>FINALMENTE em dezembro começamos a ter algo um pouco mais sério, te levei com minha família para coisas de natal em galópolis, depois dali não nos separamos mais.</p>
 
-<p>FINALMENTE em dezembro começamos a ter algo um pouco mais sério, te levei com minha família para coisas de natal em galópolis, depois dali não nos separamos mais.</p>
+    <div class="galeria">
+        <img src="foto6.jpg">
+        <img src="foto5.jpg">
+    </div>
 
-<div class="galeria">
-<img src="foto6.jpg">
-<img src="foto5.jpg">
-</div>
+    <p>Ainda me recordo da alegria que foi quando tu chegou na praia pra gente passar o réveillon juntos, ali ainda tinha minhas dúvidas se tu iria querer namorar comigo até que quando voltamos para caxias tu me apresentou para tua família.</p>
 
-<p>Ainda me recordo da alegria que foi quando tu chegou na praia pra gente passar o réveillon juntos, ali ainda tinha minhas dúvidas se tu iria querer namorar comigo até que quando voltamos para caxias tu me apresentou para tua família.</p>
+    <p>E nunca poderemos esquecer da nossa fantástica música "fecha a janela vai cair água minha mulher assumiu que tava errada".</p>
 
-<p>E nunca poderemos esquecer da nossa fantástica música "fecha a janela vai cair água minha mulher assumiu que tava errada".</p>
+    <div class="galeria">
+        <img src="foto8.jpeg">
+        <img src="foto7.jpeg">
+    </div>
 
-<div class="galeria">
-<img src="foto8.jpeg">
-<img src="foto7.jpeg">
-</div>
+    <p>Hoje vou pedir ela em namoro, espero que dê tudo certo. Queria ter comprado as flores que ela me disse que gosta mas não consegui achar e não quero demorar mais pra fazer o pedido. UM BUQUÊ DE LÍRIOS especificamente ROSA estou te devendo ainda assim como tu ficou me devendo a lasanha kkk
+    e falando da lasanha me lembro da tua (palida e arroz duro KKK).</p>
 
-<p>Hoje vou pedir ela em namoro, espero que dê tudo certo. Queria ter comprado as flores que ela me disse que gosta mas não consegui achar e não quero demorar mais pra fazer o pedido. UM BUQUÊ DE LÍRIOS especificamente ROSA estou te devendo ainda assim como tu ficou me devendo a lasanha kkk e falando da lasanha me lembro da tua (palida e arroz duro KKK).</p>
+    <p>Amo fazer tu passar vergonha comigo, gritar na rua, dançar ALO VIRGINIA, entre outras coisas que te deixam com raiva de mim.</p>
 
-<p>Amo fazer tu passar vergonha comigo, gritar na rua, dançar ALO VIRGINIA, entre outras coisas que te deixam com raiva de mim.</p>
+    <p><strong>CONTINUAR ESCREVENDO ATÉ PEDIR ELA EM NOIVADO...</strong></p>
 
-<p><strong>CONTINUAR ESCREVENDO ATÉ PEDIR ELA EM NOIVADO...</strong></p>
-
-<footer>
-❤️ Luan Santana tocando ao fundo (Ainda vou te levar no show dele)
-</footer>
-
+    <footer>
+        ❤️ Luan Santana tocando ao fundo (Ainda vou te levar no show dele)
+    </footer>
 </div>
 
 <script>
-function criarCoracao() {
-    const coracao = document.createElement("div");
-    coracao.classList.add("coracao");
-    coracao.innerHTML = "❤️";
-    coracao.style.left = Math.random() * 100 + "vw";
-    coracao.style.fontSize = (Math.random() * 26 + 14) + "px";
-    coracao.style.animationDuration = (Math.random() * 3 + 4) + "s";
-    document.body.appendChild(coracao);
-    setTimeout(() => coracao.remove(), 7000);
-}
-setInterval(criarCoracao, 450);
+    function criarCoracao() {
+        const coracao = document.createElement("div");
+        coracao.classList.add("coracao");
+        coracao.innerHTML = "❤️";
 
-window.onload = () => {
-    setTimeout(() => {
-        const container = document.querySelector('.container');
-        container.style.display = 'block';
+        coracao.style.left = Math.random() * 100 + "vw";
+        coracao.style.fontSize = (Math.random() * 26 + 14) + "px";
+        coracao.style.animationDuration = (Math.random() * 3 + 4) + "s";
+
+        document.body.appendChild(coracao);
+
         setTimeout(() => {
-            container.style.opacity = 1;
-        }, 100);
-    }, 8000);
-};
+            coracao.remove();
+        }, 7000);
+    }
+
+    setInterval(criarCoracao, 450);
 </script>
 
 </body>
