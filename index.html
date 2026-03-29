@@ -1,176 +1,783 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Nossa História ❤️</title>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #ff4b5c, #ff9a9e);
-            color: #5a0f14;
-            overflow-x: hidden;
-        }
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Arial', sans-serif;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #c0392b 0%, #e74c3c 25%, #ec7063 50%, #f1948a 75%, #fadbd8 100%);
+  color: #2c3e50;
+}
 
-        audio {
-            display: block;
-            margin: 20px auto;
-        }
+.app-container {
+  min-height: 100vh;
+  position: relative;
+}
 
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 40px 30px;
-            background: rgba(255,245,247,0.97);
-            border-radius: 22px;
-            box-shadow: 0 18px 45px rgba(192,57,43,0.35);
-            position: relative;
-            z-index: 1;
-        }
+/* Floating Hearts Animation */
+.floating-hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
 
-        h1 {
-            text-align: center;
-            color: #c0392b;
-            font-size: 40px;
-            margin-bottom: 30px;
-        }
+.floating-heart {
+  position: absolute;
+  bottom: -50px;
+  animation: floatUp linear infinite;
+  opacity: 0;
+  color: rgba(255, 64, 86, 0.8);
+}
 
-        p {
-            font-size: 18px;
-            line-height: 1.9;
-            margin-bottom: 25px;
-            text-align: justify;
-        }
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) rotate(360deg) scale(1.4);
+    opacity: 0;
+  }
+}
 
-        .galeria {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 22px;
-            margin: 40px 0;
-        }
+/* Hero Section */
+.hero-section {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, rgba(192, 57, 43, 0.9), rgba(231, 76, 60, 0.8));
+}
 
-        .galeria img {
-            width: 100%;
-            height: 260px;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: 0 10px 22px rgba(192,57,43,0.35);
-        }
+.hero-content {
+  max-width: 800px;
+  animation: fadeInUp 1s ease-out;
+}
 
-        footer {
-            margin-top: 50px;
-            text-align: center;
-            font-size: 14px;
-            color: #8e1b1b;
-        }
+.hero-title {
+  font-size: clamp(36px, 8vw, 72px);
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+}
 
-        /* ❤️ Corações */
-        .coracao {
-            position: fixed;
-            bottom: -20px;
-            color: rgba(255, 64, 86, 0.85);
-            animation: subir 6s linear infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
+.hero-heart {
+  animation: heartBeat 1.5s ease-in-out infinite;
+  color: #fff;
+}
 
-        @keyframes subir {
-            0% {
-                transform: translateY(0) scale(0.8);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-120vh) scale(1.4);
-                opacity: 0;
-            }
-        }
-    </style>
-</head>
-<body>
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
 
-<audio controls autoplay loop>
-    <source src="musica.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-</audio>
+.hero-subtitle {
+  font-size: clamp(18px, 3vw, 28px);
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
 
-<div class="container">
-    <h1>Nossa História</h1>
+/* Main Content */
+.main-content {
+  position: relative;
+  z-index: 1;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-    <p>eu conheci ela num churrasco com amigos eu estava bêbado e só conseguia reparar nela e naqueles olhos completamente apaixonantes... depois de uma semana fui em uma festa onde ela estava lá e desde então não consegui tirar os olhos dela.</p>
+/* Time Counter */
+.time-counter {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 40px;
+  margin: 40px auto;
+  max-width: 900px;
+  box-shadow: 0 20px 60px rgba(192, 57, 43, 0.3);
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
 
-    <div class="galeria">
-        <img src="foto1.jpeg">
-        <img src="foto2.jpeg">
-    </div>
+.counter-title {
+  text-align: center;
+  font-size: clamp(28px, 5vw, 40px);
+  color: #c0392b;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
 
-    <p>começamos a conversar praticamente no aniversário dela 21/07/2025, a partir desse data conversamos todos os dias de manhã bem cedo até as madrugadas, tivemos as brigas de qual musica era melhor nas notas e obviamente eu ganhei todas.</p>
+.counter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
 
-    <p>ainda me lembro do nosso primeiro selinho sentados no sofa no intervalo do jogo do cruzeiro (desde o começo o cruzeiro te incomoda) e do beijo de verdade no carro quando te deixei em casa, e posso afirmar com todas as palavras foi o dia mais feliz da minha vida.</p>
+.counter-item {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(192, 57, 43, 0.3);
+  transition: transform 0.3s ease;
+}
 
-    <div class="galeria">
-        <img src="foto1.jpeg">
-        <img src="foto2.jpeg">
-    </div>
+.counter-item:hover {
+  transform: translateY(-5px) scale(1.05);
+}
 
-    <p>Depois disso ficamos uns dias sem nos ver até que o zaltron me pediu ajuda pra ele ir ver a ana luiza e eu aproveitei pra te ver, e daí fui na tua casa a primeira vez e assistimos YOU (série que nunca tinha visto antes).</p>
+.counter-value {
+  font-size: clamp(32px, 6vw, 48px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
 
-    <div class="galeria">
-        <img src="foto4.jpeg">
-        <img src="foto3.jpeg">
-    </div>
+.counter-label {
+  font-size: clamp(14px, 2vw, 18px);
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
-    <p>Depois desse dia nos afastamos um pouco, acabamos ficando com outras pessoas mas tu nunca saiu da minha cabeça... até chegar setembro/outubro quando começamos a sair pra jogar sinuca com o paulo e o dinho,</p>
+/* Story Section */
+.story-section {
+  margin: 60px auto;
+  max-width: 900px;
+}
 
-    <p>até hoje me ardo de raiva quando lembro daqueles urubus em cima de ti tentando ficar contigo (principalmente do guilherme, gabriel e braian esses tão numa lista negra),</p>
+.story-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(192, 57, 43, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    <p>FINALMENTE em dezembro começamos a ter algo um pouco mais sério, te levei com minha família para coisas de natal em galópolis, depois dali não nos separamos mais.</p>
+.story-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 70px rgba(192, 57, 43, 0.35);
+}
 
-    <div class="galeria">
-        <img src="foto6.jpg">
-        <img src="foto5.jpg">
-    </div>
+.story-title {
+  font-size: clamp(24px, 4vw, 36px);
+  color: #c0392b;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
 
-    <p>Ainda me recordo da alegria que foi quando tu chegou na praia pra gente passar o réveillon juntos, ali ainda tinha minhas dúvidas se tu iria querer namorar comigo até que quando voltamos para caxias tu me apresentou para tua família.</p>
+.story-text {
+  font-size: clamp(16px, 2.5vw, 20px);
+  line-height: 1.8;
+  color: #2c3e50;
+  text-align: justify;
+}
 
-    <p>E nunca poderemos esquecer da nossa fantástica música "fecha a janela vai cair água minha mulher assumiu que tava errada".</p>
+/* Music Player */
+.music-player {
+  background: linear-gradient(135deg, rgba(192, 57, 43, 0.95), rgba(231, 76, 60, 0.95));
+  border-radius: 24px;
+  padding: 30px;
+  margin: 60px auto;
+  max-width: 900px;
+  box-shadow: 0 20px 60px rgba(192, 57, 43, 0.4);
+  animation: fadeInUp 1s ease-out 0.4s both;
+}
 
-    <div class="galeria">
-        <img src="foto8.jpeg">
-        <img src="foto7.jpeg">
-    </div>
+.music-player-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
 
-    <p>Hoje vou pedir ela em namoro, espero que dê tudo certo. Queria ter comprado as flores que ela me disse que gosta mas não consegui achar e não quero demorar mais pra fazer o pedido. UM BUQUÊ DE LÍRIOS especificamente ROSA estou te devendo ainda assim como tu ficou me devendo a lasanha kkk
-    e falando da lasanha me lembro da tua (palida e arroz duro KKK).</p>
+.music-icon {
+  color: #fff;
+  animation: pulse 2s ease-in-out infinite;
+}
 
-    <p>Amo fazer tu passar vergonha comigo, gritar na rua, dançar ALO VIRGINIA, entre outras coisas que te deixam com raiva de mim.</p>
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
 
-    <p><strong>CONTINUAR ESCREVENDO ATÉ PEDIR ELA EM NOIVADO...</strong></p>
+.music-info {
+  flex: 1;
+  min-width: 200px;
+}
 
-    <footer>
-        ❤️ Luan Santana tocando ao fundo (Ainda vou te levar no show dele)
-    </footer>
-</div>
+.music-info h3 {
+  font-size: clamp(20px, 3vw, 28px);
+  color: #fff;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
 
-<script>
-    function criarCoracao() {
-        const coracao = document.createElement("div");
-        coracao.classList.add("coracao");
-        coracao.innerHTML = "❤️";
+.music-info p {
+  font-size: clamp(14px, 2vw, 18px);
+  color: rgba(255, 255, 255, 0.9);
+}
 
-        coracao.style.left = Math.random() * 100 + "vw";
-        coracao.style.fontSize = (Math.random() * 26 + 14) + "px";
-        coracao.style.animationDuration = (Math.random() * 3 + 4) + "s";
+.play-button {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
 
-        document.body.appendChild(coracao);
+.play-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
 
-        setTimeout(() => {
-            coracao.remove();
-        }, 7000);
-    }
+.music-note {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+}
 
-    setInterval(criarCoracao, 450);
-</script>
+.music-note p {
+  color: #fff;
+  font-size: clamp(14px, 2vw, 16px);
+  font-style: italic;
+}
 
-</body>
-</html>
+/* Timeline */
+.timeline-container {
+  margin: 80px auto;
+  max-width: 900px;
+}
+
+.timeline-title {
+  text-align: center;
+  font-size: clamp(28px, 5vw, 40px);
+  color: #fff;
+  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.timeline {
+  position: relative;
+  padding: 20px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, #c0392b, #e74c3c, #c0392b);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item:nth-child(odd) {
+  flex-direction: row;
+}
+
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 8px 20px rgba(192, 57, 43, 0.4);
+  z-index: 2;
+}
+
+.timeline-item.special .timeline-icon {
+  width: 80px;
+  height: 80px;
+  font-size: 36px;
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+.timeline-content {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 30px;
+  width: calc(50% - 60px);
+  box-shadow: 0 15px 40px rgba(192, 57, 43, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.timeline-content:hover {
+  transform: scale(1.03);
+  box-shadow: 0 20px 50px rgba(192, 57, 43, 0.35);
+}
+
+.timeline-date {
+  font-size: clamp(14px, 2vw, 16px);
+  color: #e74c3c;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.timeline-event-title {
+  font-size: clamp(20px, 3vw, 26px);
+  color: #c0392b;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.timeline-description {
+  font-size: clamp(15px, 2vw, 18px);
+  line-height: 1.7;
+  color: #2c3e50;
+  text-align: justify;
+}
+
+/* Gallery */
+.gallery-container {
+  margin: 80px auto;
+  max-width: 1100px;
+}
+
+.gallery-title {
+  text-align: center;
+  font-size: clamp(28px, 5vw, 40px);
+  color: #fff;
+  margin-bottom: 50px;
+  font-weight: 700;
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 1;
+  box-shadow: 0 15px 40px rgba(192, 57, 43, 0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(192, 57, 43, 0.5);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(192, 57, 43, 0.9), rgba(231, 76, 60, 0.9));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-overlay span {
+  color: #fff;
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+  padding: 20px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-caption {
+  text-align: center;
+  color: #fff;
+  font-size: clamp(16px, 2.5vw, 22px);
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.lightbox-counter {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(14px, 2vw, 18px);
+  margin-top: 10px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.3s ease;
+  z-index: 10001;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1) rotate(90deg);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.3s ease;
+  z-index: 10001;
+}
+
+.lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+
+/* Special Message */
+.special-message {
+  margin: 80px auto;
+  max-width: 900px;
+}
+
+.message-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 245, 247, 0.98));
+  border-radius: 30px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 25px 70px rgba(192, 57, 43, 0.4);
+  border: 3px solid rgba(192, 57, 43, 0.3);
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.message-heart {
+  color: #e74c3c;
+  margin-bottom: 20px;
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+.message-title {
+  font-size: clamp(28px, 5vw, 42px);
+  color: #c0392b;
+  margin-bottom: 30px;
+  font-weight: 800;
+}
+
+.message-text {
+  font-size: clamp(16px, 2.5vw, 20px);
+  line-height: 1.8;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.message-text.italic {
+  font-style: italic;
+  font-size: clamp(18px, 3vw, 24px);
+  color: #e74c3c;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 80px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.footer p {
+  font-size: clamp(16px, 2.5vw, 20px);
+  color: #fff;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.footer-note {
+  font-size: clamp(14px, 2vw, 16px);
+  color: rgba(255, 255, 255, 0.9);
+  font-style: italic;
+}
+
+/* Fade In Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 1s ease-out;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 30px;
+  }
+
+  .timeline-item {
+    flex-direction: column !important;
+    align-items: flex-start;
+    padding-left: 80px;
+  }
+
+  .timeline-icon {
+    left: 30px;
+  }
+
+  .timeline-content {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .counter-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .lightbox-nav {
+    width: 50px;
+    height: 50px;
+  }
+
+  .lightbox-prev {
+    left: 10px;
+  }
+
+  .lightbox-next {
+    right: 10px;
+  }
+
+  .story-card,
+  .message-card {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    min-height: 50vh;
+  }
+
+  .main-content {
+    padding: 20px 10px;
+  }
+
+  .time-counter {
+    padding: 25px 15px;
+  }
+
+  .counter-grid {
+    gap: 15px;
+  }
+
+  .music-player {
+    padding: 20px;
+  }
+
+  .timeline-item {
+    padding-left: 60px;
+  }
+
+  .timeline-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    left: 20px;
+  }
+
+  .timeline-item.special .timeline-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 26px;
+  }
+
+  .timeline::before {
+    left: 20px;
+  }
+}
